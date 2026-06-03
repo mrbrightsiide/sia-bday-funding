@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Copy, Check, Heart, ChevronDown, ChevronUp, User } from 'lucide-react';
 import { addDonor, subscribeToDonors } from './firebase';
-import { Spinner } from './components/ui/Spinner';
+import { Spinner } from './components/ui/spinner';
 
 const GIFT_NAME = 'Beats Studio Pro Wireless 헤드폰';
 const GIFT_TOTAL = 284000;
