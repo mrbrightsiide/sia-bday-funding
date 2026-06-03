@@ -10,28 +10,15 @@ import {
 } from 'firebase/firestore'; // Import necessary Firestore functions
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-export { app, auth, db };
-
-// Declare environment variables locally so TypeScript can recognize `process` in this file
-declare const process: {
-  env: {
-    VITE_API_KEY: string;
-    VITE_AUTH_DOMAIN: string;
-    VITE_PROJECT_ID: string;
-    VITE_STORAGE_BUCKET: string;
-    VITE_MESSAGING_SENDER_ID: string;
-    VITE_APP_ID: string;
-  };
-};
 
 // Firebase configuration loaded from environment variables
 const firebaseConfig = {
-  apiKey: process.env.VITE_API_KEY,
-  authDomain: process.env.VITE_AUTH_DOMAIN,
-  projectId: process.env.VITE_PROJECT_ID,
-  storageBucket: process.env.VITE_STORAGE_BUCKET,
-  messagingSenderId: process.env.VITE_MESSAGING_SENDER_ID,
-  appId: process.env.VITE_APP_ID,
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
 };
 
 // Initialize Firebase safely to prevent duplicate initializations
@@ -85,3 +72,5 @@ export const subscribeToDonors = (callback: (donors: Donor[]) => void) => {
 
   return unsubscribe; // Return the unsubscribe function to clean up the listener
 };
+
+export { app, auth, db };
