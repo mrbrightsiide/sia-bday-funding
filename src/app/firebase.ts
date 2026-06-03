@@ -27,11 +27,9 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 // Function to add a new donor
-export const addDonor = async (donorData: {
-  nickname: string;
-  oneLineMsg?: string;
-  date: string;
-}) => {
+export const addDonor = async (
+  donorData: Omit<Donor, 'id' | 'date'> & { date: string },
+) => {
   try {
     const docRef = await addDoc(collection(db, 'donors'), {
       ...donorData,
