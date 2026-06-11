@@ -94,7 +94,7 @@ export default function App() {
       return;
     }
 
-    const newDonorData: Omit<Donor, 'id'> = {
+    const newDonorData = {
       name: name.trim(),
       nickname: nickname.trim(),
       amount,

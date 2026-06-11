@@ -36,7 +36,6 @@ export const addDonor = async (
       date: Timestamp.fromDate(new Date(donorData.date)), // Store date as a Firestore Timestamp
       createdAt: Timestamp.now(), // Add a timestamp for ordering
     });
-    console.log('Document written with ID: ', docRef.id);
     return docRef.id;
   } catch (e) {
     console.error('Error adding document: ', e);
@@ -54,11 +53,12 @@ export const subscribeToDonors = (callback: (donors: Donor[]) => void) => {
       querySnapshot.forEach((doc) => {
         donors.push({
           id: doc.id,
-          ...doc.data(),
           date: doc.data().date.toDate().toISOString().slice(0, 10), // Convert Timestamp back to string
+          name: doc.data().name,
           nickname: doc.data().nickname,
           amount: doc.data().amount,
           oneLineMsg: doc.data()?.oneLineMsg,
+          ...doc.data(), // Include any additional fields if necessary
         });
       });
       callback(donors);
