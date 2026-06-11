@@ -14,6 +14,7 @@ const GIFT_IMAGE =
 
 export interface Donor {
   id: string;
+  name: string;
   nickname: string;
   amount: number;
   date: string;
@@ -93,7 +94,8 @@ export default function App() {
       return;
     }
 
-    const newDonorData = {
+    const newDonorData: Omit<Donor, 'id'> = {
+      name: name.trim(),
       nickname: nickname.trim(),
       amount,
       date: new Date().toISOString().slice(0, 10), // Date string for display
