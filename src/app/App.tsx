@@ -42,6 +42,28 @@ const formatKoreanAmount = (amount: number): string => {
   return result + '원';
 };
 
+const formatTimestamp = (date: any): string => {
+  if (!date) return '';
+
+  // Firestore timestamp 객체 처리
+  if (date.seconds !== undefined) {
+    const firebaseDate = new Date(date.seconds * 1000);
+    return firebaseDate.toISOString().split('T')[0];
+  }
+
+  // 문자열 처리
+  if (typeof date === 'string') {
+    return date;
+  }
+
+  // Date 객체 처리
+  if (date instanceof Date) {
+    return date.toISOString().split('T')[0];
+  }
+
+  return '';
+};
+
 export default function App() {
   const [donors, setDonors] = useState<Donor[]>([]);
   const [loadingDonors, setLoadingDonors] = useState(true);
@@ -147,6 +169,7 @@ export default function App() {
     const unsubscribe = subscribeToDonors((fetchedDonors) => {
       setDonors(fetchedDonors);
       setLoadingDonors(false);
+      console.log('Fetched donors:', fetchedDonors);
     });
 
     // Cleanup the subscription when the component unmounts
@@ -245,7 +268,7 @@ export default function App() {
               </span>,
               <span>
                 <span style={{ color: '#dc2626', fontWeight: 600 }}>
-                  ⚠️ 3만원 이상은 받지 않습니다 ‼️
+                  ⚠️ 2만원 이상은 받지 않습니다 ‼️
                 </span>{' '}
                 (주인장 백수 이슈)
               </span>,
@@ -536,15 +559,15 @@ export default function App() {
                     >
                       <User size={15} style={{ color: '#94a3b8' }} />
                     </div>
-                    <div>
+                    <div className='flex items-center justify-between flex-1'>
                       <p className='text-foreground text-sm font-medium'>
                         {donor.nickname}
                       </p>
                       <p
                         className='text-muted-foreground'
-                        style={{ fontSize: '0.72rem' }}
+                        style={{ fontSize: '0.72rem', color: '#94a3b8' }}
                       >
-                        {donor.date}
+                        {formatTimestamp(donor.date)}
                       </p>
                     </div>
                   </div>
