@@ -169,7 +169,6 @@ export default function App() {
     const unsubscribe = subscribeToDonors((fetchedDonors) => {
       setDonors(fetchedDonors);
       setLoadingDonors(false);
-      console.log('Fetched donors:', fetchedDonors);
     });
 
     // Cleanup the subscription when the component unmounts
