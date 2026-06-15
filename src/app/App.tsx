@@ -156,10 +156,7 @@ export default function App() {
   // Effect to calculate funded amount and percentage
   useEffect(() => {
     if (fundedAmount === 0) return;
-    const newPercentage = Math.min(
-      Math.round((fundedAmount / GIFT_TOTAL) * 100),
-      100,
-    );
+    const newPercentage = Math.round((fundedAmount / GIFT_TOTAL) * 100);
     setPercentage(newPercentage);
   }, [fundedAmount]);
 
