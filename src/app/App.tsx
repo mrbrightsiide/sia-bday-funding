@@ -311,11 +311,12 @@ export default function App() {
             </div>
             <button
               onClick={handleCopy}
-              className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-150 border cursor-${copied ? 'default' : 'pointer'}`}
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-150 border`}
               style={{
                 background: copied ? '#2563eb' : '#ffffff',
                 color: copied ? '#ffffff' : '#2563eb',
                 borderColor: '#2563eb',
+                cursor: copied ? 'default' : 'pointer',
               }}
             >
               {copied ? <Check size={13} /> : <Copy size={13} />}
