@@ -7,7 +7,7 @@ import { Spinner } from './components/ui/spinner';
 const GIFT_NAME = 'Beats Studio Pro Wireless 헤드폰';
 const GIFT_TOTAL = 284000;
 const ACCOUNT_BANK = '카카오뱅크';
-const ACCOUNT_NUMBER = '3333-12-3456789';
+const ACCOUNT_NUMBER = '3333-18-8827619';
 const ACCOUNT_HOLDER = '김시아';
 const GIFT_IMAGE =
   'https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MQTR3?wid=2754&hei=4115&fmt=jpeg&qlt=90&.v=1741643688482';
@@ -258,7 +258,7 @@ export default function App() {
         >
           <ul className='flex flex-col gap-2'>
             {[
-              <span>김시식의 생일 선물을 위한 펀딩 사이트입니다.</span>,
+              <span>김시식의 생일 선물 마련을 위한 모금 사이트입니다.</span>,
               <span>
                 펀딩 종료 후, 부족한 금액은 사비로 채워 구매 예정입니다.
               </span>,
@@ -269,7 +269,7 @@ export default function App() {
                 (주인장 백수 이슈)
               </span>,
               <span>
-                방문 해주신 마음만으로도 감사합니다 ☺️ 늘 건강하고 행복하세요♡
+                들러주신 것만으로도 감사합니다☺️ 늘 건강하고 행복하세요♡
               </span>,
             ].map((item, i) => (
               <li key={i} className='flex gap-2 text-foreground'>
