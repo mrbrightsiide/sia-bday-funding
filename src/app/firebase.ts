@@ -31,11 +31,17 @@ export const addDonor = async (
   donorData: Omit<Donor, 'id' | 'date'> & { date: string },
 ) => {
   try {
-    const docRef = await addDoc(collection(db, 'donors'), {
-      ...donorData,
+    const donorPayload: Record<string, unknown> = {
+      name: donorData.name,
+      nickname: donorData.nickname,
+      amount: donorData.amount,
       date: Timestamp.fromDate(new Date(donorData.date)), // Store date as a Firestore Timestamp
       createdAt: Timestamp.now(), // Add a timestamp for ordering
-    });
+    };
+
+    donorPayload.oneLineMsg = donorData.oneLineMsg ?? '';
+
+    const docRef = await addDoc(collection(db, 'donors'), donorPayload);
     return docRef.id;
   } catch (e) {
     console.error('Error adding document: ', e);
